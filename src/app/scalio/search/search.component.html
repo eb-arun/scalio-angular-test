@@ -1,0 +1,9 @@
+<div>
+    <mat-form-field appearance="outline">
+      <mat-label>Login</mat-label>
+      <input matInput #loginKey placeholder="enter login" autocomplete="off">
+      <mat-icon matSuffix>search</mat-icon>
+    </mat-form-field>
+    <button mat-stroked-button color="primary" (click)="submitKey(loginKey.value)">Submit</button>
+</div>
+ 
