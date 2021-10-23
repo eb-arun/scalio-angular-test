@@ -7,13 +7,13 @@
       <!-- ID Column -->
       <ng-container matColumnDef="avatar_url">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> Avatar </th>
-        <td mat-cell *matCellDef="let row"> {{row.avatar_url}} </td>
+        <td mat-cell *matCellDef="let row"> <img src="{{row.avatar_url}}" width="35px" /> </td>
       </ng-container>
   
       <!-- Progress Column -->
       <ng-container matColumnDef="login">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> login </th>
-        <td mat-cell *matCellDef="let row"> {{row.login}} </td>
+        <td mat-cell *matCellDef="let row" class="loginCell"> {{row.login}} </td>
       </ng-container>
   
       <!-- type Column -->
