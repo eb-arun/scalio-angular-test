@@ -6,6 +6,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 })
 export class LoginService {
   tableStore = new BehaviorSubject('');
+  searchKey = new BehaviorSubject('');
   constructor(private http:HttpClient) { }
 
   loginSearch(key:string):Observable<any> {
