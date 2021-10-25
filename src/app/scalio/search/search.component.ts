@@ -20,7 +20,7 @@ export class SearchComponent implements OnInit {
     if (key != this.data.searchKey.value) {
       this.error = false;
       this.data.searchKey.next(key);
-      this.data.loginSearch(key).subscribe(res => {
+      this.data.loginSearch(key, 9, 1).subscribe(res => {
         this.result = res;
         this.data.tableStore.next(this.result);
       }

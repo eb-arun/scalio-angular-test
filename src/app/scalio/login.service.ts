@@ -9,7 +9,7 @@ export class LoginService {
   searchKey = new BehaviorSubject('');
   constructor(private http:HttpClient) { }
 
-  loginSearch(key:string):Observable<any> {
-    return this.http.get("https://api.github.com/search/users?q="+key+"in:login");
+  loginSearch(key:string, perPage:number, page:number):Observable<any> {
+    return this.http.get("https://api.github.com/search/users?q="+key+"in:login&page="+page+"&per_page="+perPage);
   }
 }

@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
-import {MatPaginator} from '@angular/material/paginator';
+import {MatPaginator, PageEvent} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
 import {MatTableDataSource} from '@angular/material/table';
 import { LoginService } from '../login.service';
@@ -16,7 +16,7 @@ export class ResultsComponent implements OnInit {
   @ViewChild(MatSort, { static: false }) sort!: MatSort;
   tableDataSource:any;
   resultsLength:number = 0;
-
+  pageEvent:PageEvent = new PageEvent();
   constructor(private data:LoginService) { 
     this.data.tableStore.subscribe(res=>{
       this.tableDataSource = res;
@@ -29,6 +29,8 @@ export class ResultsComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.pageEvent.pageSize = 9;
+    this.pageEvent.pageIndex = 0;
     console.log('am results ', this.data.tableStore.value)
     this.data.tableStore.subscribe(res=> {
       console.log('result subs', res)
@@ -38,6 +40,16 @@ export class ResultsComponent implements OnInit {
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+  onPagination(data:PageEvent) {
+    this.pageEvent = data;
+    this.data.loginSearch(this.data.searchKey.value, data.pageSize, data.pageIndex+1).subscribe(res=> {
+      this.dataSource = new MatTableDataSource(res.items);
+      this.dataSource.sort = this.sort;
+    })
+    console.log('event', data);                                                                  
+    console.log('paginator', this.paginator.getNumberOfPages())
   }
 
 

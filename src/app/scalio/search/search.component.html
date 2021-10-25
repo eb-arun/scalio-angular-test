@@ -1,10 +1,10 @@
 <div fxLayout='row' fxLayoutGap="5px" fxLayoutAlign='center'>
     <mat-form-field appearance="outline">
       <mat-label>Login</mat-label>
-      <input matInput #loginKey placeholder="enter login" autocomplete="off" (keyup.enter)="submitKey(loginKey.value)">
+      <input matInput #loginKey placeholder="enter login" autocomplete="off" (keyup.enter)="submitKey(loginKey.value.trim())">
       <mat-icon matSuffix>search</mat-icon>
       <mat-hint *ngIf="error">{{errorText}}</mat-hint>
     </mat-form-field>
-    <button mat-stroked-button color="primary" class="submit-btn" (click)="submitKey(loginKey.value)">Submit</button>
+    <button mat-stroked-button color="primary" class="submit-btn" (click)="submitKey(loginKey.value.trim())">Submit</button>
 </div>
  
